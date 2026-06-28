@@ -1,3 +1,4 @@
+<img width="1619" height="916" alt="home1" src="https://github.com/user-attachments/assets/e592890b-3da0-4fe4-8964-9a201c012e3f" />
 <img width="939" height="596" alt="excel" src="https://github.com/user-attachments/assets/cd572180-f8c4-4524-bc8b-755f9c64bed6" />
 <img width="1606" height="391" alt="expense" src="https://github.com/user-attachments/assets/4d4f9148-bd8a-4fc6-a8ec-0f1adc07a82c" />
 <img width="1617" height="394" alt="income" src="https://github.com/user-attachments/assets/6bdd005e-4ca9-48af-b2e1-78ffa516ee23" />
