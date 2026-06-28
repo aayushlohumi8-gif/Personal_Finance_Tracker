@@ -50,19 +50,18 @@ def init_db():
 init_db()
 
 # ================= SIGNUP =================
-
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+   
     if request.method == 'POST':
 
-     username = request.form['username']
-     email = request.form['email']
-     password = request.form['password']
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
 
-    conn = sqlite3.connect('finance.db')
-    cursor = conn.cursor()
+        conn = sqlite3.connect('finance.db')
+        cursor = conn.cursor()
 
-    try:
         cursor.execute(
             "INSERT INTO users(username, email, password) VALUES (?, ?, ?)",
             (username, email, password)
@@ -73,12 +72,7 @@ def signup():
 
         return redirect('/login')
 
-    except sqlite3.IntegrityError:
-        conn.close()
-        return "Email already exists! Please use another email."
-
-        return render_template('signup.html')
-       
+    return render_template('signup.html')
 # ================= LOGIN =================
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -278,7 +272,8 @@ def export():
 
     conn.close()
 
-    with pd.ExcelWriter("finance_report.xlsx") as writer:
+    file_name = "finance_report.xlsx"
+    with pd.ExcelWriter(file_name) as writer:
 
         income_df.to_excel(
             writer,
@@ -293,7 +288,7 @@ def export():
         )
 
     return send_file(
-        "finance_report.xlsx",
+        file_name,
         as_attachment=True
     )
 
