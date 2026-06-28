@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session, send_file
 import sqlite3
 import pandas as pd
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 app.secret_key = "ayush123"
@@ -130,6 +131,34 @@ def home():
     total_expense = cursor.fetchone()[0]
 
     conn.close()
+    # Generate Expense Pie Chart
+
+    categories = []
+    amounts = []
+
+    for expense in expenses:
+        categories.append(expense[2])   # Category
+        amounts.append(expense[1])      # Amount
+
+    plt.figure(figsize=(5, 5))
+
+    if len(amounts) > 0:
+        plt.pie(
+            amounts,
+            labels=categories,
+            autopct='%1.1f%%'
+        )
+        plt.title("Expense Distribution")
+    else:
+        plt.text(
+            0.5, 0.5,
+            "No Expenses Yet",
+            ha='center',
+            fontsize=14
+        )
+
+    plt.savefig('src/static/chart.png')
+    plt.close()
 
     if total_income is None:
         total_income = 0
